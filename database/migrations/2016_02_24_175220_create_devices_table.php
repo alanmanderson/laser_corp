@@ -23,10 +23,8 @@ class CreateDevicesTable extends Migration
             $table->string('serial_number');
             $table->datetime('firmware_date');
             $table->string('firmware_version');
-            $table->string('site_id')->unsigned();
+            $table->integer('site_id')->unsigned();
             $table->foreign('site_id')->references('id')->on('sites');
-            $table->integer('dealer_id')->unsigned();
-            $table->foreign('dealer_id')->references('id')->on('dealers');
             $table->timestamps();
         });
     }

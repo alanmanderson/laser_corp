@@ -10,6 +10,10 @@ class DbCustomerRepository implements CustomerRepositoryInterface{
     public function find($id){
         return Customer::find($id);
     }
+    
+    public function findByVendorId($vendorId){
+
+    }
 
     public function findOrCreate($attributes){
         $customers = Customer::whereVendorId($attributes['vendor_id']);

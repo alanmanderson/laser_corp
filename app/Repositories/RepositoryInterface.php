@@ -3,9 +3,9 @@ namespace App\Repositories;
 
 interface RepositoryInterface
 {
-    public function getAll();
+    public function findAll();
 
     public function find($id);
 
-    public function findOrGet($attributes);
+    public function findOrCreate($attributes);
 }

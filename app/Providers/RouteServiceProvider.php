@@ -29,6 +29,13 @@ class RouteServiceProvider extends ServiceProvider
         parent::boot($router);
     }
 
+    public function register(){
+        $this->app->bind(
+            'App\Alerts\DiscoveryAlertInterface',
+            'App\Alerts\DiscoveryAlert'
+        );
+    }
+
     /**
      * Define the routes for the application.
      *

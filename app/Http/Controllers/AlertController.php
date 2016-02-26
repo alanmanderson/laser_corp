@@ -6,9 +6,12 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Alerts\DiscoveryAlertHandlerInterface;
+use App\Repositories\DeviceRepositoryInterface;
 
 class AlertController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -35,10 +38,10 @@ class AlertController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, DiscoveryAlertHandlerInterface $handler)
     {
         $inputObj = simplexml_load_string($request->getContent());
-        dd($inputObj);
+        return $handler->handle($inputObj);
     }
 
     /**

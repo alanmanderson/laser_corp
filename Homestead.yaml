@@ -1,0 +1,36 @@
+---
+ip: "192.168.10.10"
+memory: 2048
+cpus: 1
+hostname: laser-corp
+name: laser-corp
+provider: virtualbox
+
+authorize: ~/.ssh/github_rsa.pub
+
+keys:
+    - ~/.ssh/github_rsa
+
+folders:
+    - map: "/Users/Alan/dev/laser_corp"
+      to: "/home/vagrant/laser-corp"
+
+sites:
+    - map: lc.localhost.com
+      to: "/home/vagrant/laser-corp/public"
+
+databases:
+    - homestead
+
+# blackfire:
+#     - id: foo
+#       token: bar
+#       client-id: foo
+#       client-token: bar
+
+# ports:
+#     - send: 50000
+#       to: 5000
+#     - send: 7777
+#       to: 777
+#       protocol: udp
