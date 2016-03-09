@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Alerts\DiscoveryAlertHandlerInterface;
 use App\Repositories\DeviceRepositoryInterface;
+use App\Alerts\AlertHandlerInterface;
 
 class AlertController extends Controller
 {
@@ -38,7 +39,7 @@ class AlertController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, DiscoveryAlertHandlerInterface $handler)
+    public function store(Request $request, AlertHandlerInterface $handler)
     {
         $inputObj = simplexml_load_string($request->getContent());
         return $handler->handle($inputObj);

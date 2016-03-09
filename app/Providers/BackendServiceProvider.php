@@ -26,6 +26,10 @@ class BackendServiceProvider extends ServiceProvider {
             'App\Alerts\DiscoveryAlertHandlerInterface',
             'App\Alerts\DiscoveryAlertHandler'
         );
+        $this->app->bind(
+            'App\Alerts\AlertHandlerInterface',
+            'App\Alerts\AlertHandler'
+        );
     }
 
 }

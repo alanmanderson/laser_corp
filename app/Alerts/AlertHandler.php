@@ -7,7 +7,7 @@ use \DB;
 class AlertHandler implements AlertHandlerInterface {
 
     public function handle(SimpleXMLElement $xml){
-        $ret = [];
+        $alertsInserted = 0;
         $deviceIndex = 0;
         foreach($xml->Devices->children() as $xmlDevice) {
             $alertIndex = 0;
@@ -21,12 +21,13 @@ class AlertHandler implements AlertHandlerInterface {
                     $fields[] = $field->table_field;
                     $values[] = $this->getValue($xml, $field->xml_field, [$deviceIndex, $alertIndex]);
                 }
-                $ret[] = $this->insertRaw($alert->db_table_name, $fields, $values);
+                $this->insertRaw($alert->db_table_name, $fields, $values);
+                $alertsInserted++;
                 $alertIndex++;
             }
             $deviceIndex++;
         } 
-        return $ret;
+        return $alertsInserted;
     }
 
     public function getValue(SimpleXMLElement $xml, $path, array $indexes = array()){
