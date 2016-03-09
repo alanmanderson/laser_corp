@@ -4,11 +4,10 @@ use App\Repositories\CustomerRepositoryInterface;
 use App\Repositories\SiteRepositoryInterface;
 use App\Repositories\DeviceRepositoryInterface;
 use App\Repositories\AlertRepositoryInterface;
-use App\Alerts\DiscoveryAlertHandlerInterface;
 
 use \SimpleXMLElement;
 
-class DiscoveryAlertHandler implements DiscoveryAlertHandlerInterface {
+class DiscoveryAlertHandler extends AlertHandler implements DiscoveryAlertHandlerInterface {
     protected $customerRepo;
     protected $siteRepo;
     protected $deviceRepo;
@@ -26,6 +25,7 @@ class DiscoveryAlertHandler implements DiscoveryAlertHandlerInterface {
     }
 
     public function handle(SimpleXMLElement $xmlAlert){
+        parent::handle($xmlAlert);
         $customer = $this->customerRepo->findOrCreate([
             'vendor_id' => strval($xmlAlert->Customer->Id),
             'name' => strval($xmlAlert->Customer->Name)
